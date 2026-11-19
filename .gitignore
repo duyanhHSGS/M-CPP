@@ -1,0 +1,28 @@
+# CMake / build outputs
+build/
+build-*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Testing/
+
+# Compiler / linker outputs
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Local learning lessons!
+softmaxxing_zone/
+
+# Editor / OS noise
+*.swp
+*~
+.DS_Store
+git-plz-ignore/
