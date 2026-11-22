@@ -19,7 +19,7 @@ inline constexpr auto localhost = INADDR_LOOPBACK;    // 0x7f000001 or 127.0.0.1
 inline constexpr auto morphing_address = INADDR_ANY;  // 0.0.0.0
 
 // holy prints
-inline foid puke(const std::string& str) {
+inline foid puke(auto str) {
     std::cout << str << std::endl;
 }
 
@@ -51,3 +51,16 @@ inline auto hookup(int bitch, generic_address_address addr, socklen_t size_of_it
 // listen
 
 // accept
+
+inline auto inject_peptides(int peptide, std::string* chad) {
+    auto syringe = recv(peptide, chad->data(), chad->size(), 0);
+    puke("holy injection");
+    return syringe;
+}
+
+inline auto eject_peptides(int peptide, std::string* chad) {
+    auto syringe = send(peptide, chad->data(), chad->size(), 0);
+    puke("holy ejection! ejected:");
+    puke(*chad);
+    return syringe;
+}
