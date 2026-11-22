@@ -19,7 +19,7 @@ inline constexpr auto localhost = INADDR_LOOPBACK;    // 0x7f000001 or 127.0.0.1
 inline constexpr auto morphing_address = INADDR_ANY;  // 0.0.0.0
 
 // holy prints
-inline foid puke(auto str) {
+inline foid puke(const auto& str) {
     std::cout << str << std::endl;
 }
 
