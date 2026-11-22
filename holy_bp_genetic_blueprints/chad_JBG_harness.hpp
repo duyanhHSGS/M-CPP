@@ -8,12 +8,13 @@
 
 // holy dicktionary
 using foid = void;
-inline constexpr auto ipv4 = AF_INET;       // value is (int) 2 holy
-inline constexpr auto tcp = SOCK_STREAM;    // value is int 1
+inline constexpr auto ipv4 = AF_INET;     // value is (int) 2 holy
+inline constexpr auto tcp = SOCK_STREAM;  // value is int 1
+using generic_address = sockaddr;
 using generic_address_address = sockaddr*;  // generic lunix morpher
 inline constexpr auto default_protocol = 0;
 inline constexpr auto failure = -1;
-using generic_address = sockaddr_in;                  // exactly what it means
+using ipv4_address = sockaddr_in;                     // exactly what it means
 using port_number = in_port_t;                        // port number
 inline constexpr auto localhost = INADDR_LOOPBACK;    // 0x7f000001 or 127.0.0.1
 inline constexpr auto morphing_address = INADDR_ANY;  // 0.0.0.0
@@ -23,13 +24,13 @@ inline foid puke(const auto& str) {
     std::cout << str << std::endl;
 }
 
-inline auto& ip_type(generic_address& a) {
+inline auto& ip_type(ipv4_address& a) {
     return a.sin_family;
 }
-inline auto& portugul(generic_address& a) {
+inline auto& portugul(ipv4_address& a) {
     return a.sin_port;
 }
-inline auto& ip_actual(generic_address& a) {
+inline auto& ip_actual(ipv4_address& a) {
     return a.sin_addr.s_addr;  // fuck the one who name this bullshit
 }
 inline auto to_portugul(uint16_t _port) {
@@ -43,24 +44,40 @@ inline auto get_bitches() {                      // spam inline constexpr for ch
 // usually file descriptor (foid)
 
 // bind
-inline auto hookup(int bitch, generic_address_address addr, socklen_t size_of_it) {
-    return bind(bitch, reinterpret_cast<generic_address_address>(addr), size_of_it);
-    // i dont get it!
+inline auto hookup(int bitch, ipv4_address& addr) {
+    return bind(bitch, reinterpret_cast<generic_address_address>(&addr), sizeof(addr));
+    // hook up now is for ipv4 because the lesson binds me
 }
 
 // listen
 
 // accept
 
+// this shi waits for injection, auto halt here to inject
+// streams peptide, and inject it into chad!
 inline auto inject_peptides(int peptide, std::string* chad) {
     auto syringe = recv(peptide, chad->data(), chad->size(), 0);
-    puke("holy injection");
+    // puke("holy injection");
     return syringe;
 }
 
 inline auto eject_peptides(int peptide, std::string* chad) {
     auto syringe = send(peptide, chad->data(), chad->size(), 0);
-    puke("holy ejection! ejected:");
-    puke(*chad);
+    // puke("holy ejection! ejected:");
+    // puke(*chad);
     return syringe;
+}
+
+// illness: make bitvh -> make address for bitch -> hookup
+// make peptides -> inject -> eject
+
+inline auto make_house_for_human_trafficing_at_port(int portul) {
+    auto bitch = get_bitches();
+    if (bitch == failure) return failure;
+    ipv4_address i4{};   // null them
+    ip_type(i4) = ipv4;  // obvious, who tf in lunix not initialize this?
+    portugul(i4) = to_portugul(portul);
+    ip_actual(i4) = morphing_address;
+    if (hookup(bitch, i4) == failure) return failure;  // should close bitch too but who cares
+    return bitch;
 }
