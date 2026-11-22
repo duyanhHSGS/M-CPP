@@ -79,5 +79,11 @@ inline auto make_house_for_human_trafficing_at_port(int portul) {
     portugul(i4) = to_portugul(portul);
     ip_actual(i4) = morphing_address;
     if (hookup(bitch, i4) == failure) return failure;  // should close bitch too but who cares
+    if (listen(bitch, 99999) == failure) return failure;
+    // lunix: make btch a listening fd, not the verb listen
+    // idk who named it, i cant be human i am subhuman
+    // 99999 connection requests will be queued before further requests are refused.
+    // exactly as lunix says
+    // should close bitch too but who cares. i4 is out of scope? it seems
     return bitch;
 }
