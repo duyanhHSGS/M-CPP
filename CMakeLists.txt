@@ -21,3 +21,18 @@ add_executable(server ${MCPP_SOURCES})
 
 # include the includes
 target_include_directories(server PRIVATE "${INCLUDE_DIR}")
+
+# testing! it means surgerymaxxing (autopsy only, not implants sadly)
+if(BUILD_TESTING)
+include(CTest)
+file( GLOB_RECURSE MCPP_TEST_SOURCES 
+    CONFIGURE_DEPENDS "${TEST_DIR}/*.cpp")
+foreach(TEST_SOURCE ${MCPP_TEST_SOURCES}) 
+get_filename_component(
+    TEST_NAME "${TEST_SOURCE}" NAME_WE # because linix 
+)
+add_executable(${TEST_NAME} "${TEST_SOURCE}")
+target_include_directories(${TEST_NAME} PRIVATE "${INCLUDE_DIR}")
+add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME}) #register ctest
+endforeach()
+endif()
