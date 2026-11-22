@@ -5,7 +5,8 @@ int main(int argc, char* argv[]) {
     if (bitch == failure) return reinterpret_cast<int64_t>("foid dies! i hate them");
     // waits for delivery ! peptide connect! toprepare injecyton holy injection
     while (true) {
-        auto peptide = accept(bitch, nullptr, nullptr);  // it should freeze here! good!
+        auto peptide = make_connected_peptide_from_murdering(bitch);  // it should freeze here! good!
+        if (peptide == failure) return failure;                       // end server! TODO: make proper handling chadness
         // it waits for sth to connect to this foid!
         // use net cat! nc 127.0.0.1 6969 and it unfroze
         puke("hookup established! sth was inserted!");
@@ -23,6 +24,7 @@ int main(int argc, char* argv[]) {
             puke(chad);
         }
         puke("chad ghosting!");
+        close(peptide);  // clear enough! thanks linus for making it an actual verb bro
     }
     return 0;
 }

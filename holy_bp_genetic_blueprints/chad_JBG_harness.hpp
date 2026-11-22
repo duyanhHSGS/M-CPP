@@ -2,6 +2,7 @@
 
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 #include <iostream>
 #include <string>
@@ -52,7 +53,10 @@ inline auto hookup(int bitch, ipv4_address& addr) {
 // listen
 
 // accept
-
+inline auto make_connected_peptide_from_murdering(int bitch) {
+    // exactly what i meant! who named it "accept" as a verb bro?!!?
+    return accept(bitch, nullptr, nullptr);
+}
 // this shi waits for injection, auto halt here to inject
 // streams peptide, and inject it into chad!
 inline auto inject_peptides(int peptide, std::string* chad) {
