@@ -65,11 +65,23 @@ inline auto inject_peptides(int peptide, std::string* chad) {
     return syringe;
 }
 
-inline auto eject_peptides(int peptide, std::string* chad) {
-    auto syringe = send(peptide, chad->data(), chad->size(), 0);
+inline ssize_t eject_peptides(int peptide, std::string* chad) {
+    // cant use auto return type sad! there is failure (int) and ssize t, how jesus
+    auto syringe = static_cast<ssize_t>(0);  // tje return type of send(...)
+    // this syring should equals 0 please.
+    size_t limb_lengthening = 0;  // sent bytes! holy iq
     // puke("holy ejection! ejected:");
     // puke(*chad);
-    return syringe;
+    // probem: tcp is complete bullshit, it may not send all of it!
+    while (limb_lengthening < chad->size()) {  // 1 char may = 1 byte, hopefullyl
+        syringe = send(peptide, chad->data() + limb_lengthening, chad->size() - limb_lengthening, 0);
+        // send bytes from what was sent before! so plus limb lengthening
+        // send what was remaining, so it minus limb, wow, holy height
+        if (syringe <= 0) return static_cast<ssize_t>(failure);  // TODO: handle it differently
+        limb_lengthening += syringe;
+        // holy iq
+    }
+    return static_cast<ssize_t>(limb_lengthening);
 }
 
 // illness: make bitvh -> make address for bitch -> hookup
@@ -89,5 +101,6 @@ inline auto make_house_for_human_trafficing_at_port(int portul) {
     // 99999 connection requests will be queued before further requests are refused.
     // exactly as lunix says
     // should close bitch too but who cares. i4 is out of scope? it seems
+    // TODO: do it!
     return bitch;
 }
