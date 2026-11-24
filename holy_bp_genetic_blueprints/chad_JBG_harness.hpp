@@ -58,9 +58,31 @@ inline auto make_connected_peptide_from_murdering(int bitch) {
     return accept(bitch, nullptr, nullptr);
 }
 
+inline auto get_DNA_length(const std::string& face) {
+    auto mandible = face.find("Content-Length: ");
+    // if (mandible == std::string::npos) exit_program(); // TODO: chad do whatever chad wants
+    mandible += 16;
+    auto ramus = face.find("\r\n", mandible);
+    auto DNA = face.substr(mandible, ramus - mandible);
+    return std::stoull(DNA);
+}
+
 // ascend this http chad. TODO.
+// POST / HTTP/1.1
+// Host: localhost:6776
+// Content-Length: 12345
+// Content-Type: application/json
+
+// me want chad
 inline bool psl_rating(const std::string& htn, const std::string& chad) {
-    return htn.contains('\n');
+    std::string face, frame;
+    auto hyoid = chad.find("\r\n\r\n");  // true? htn becomes chad!
+    // finds first \r\n\r\n, before it is face, after it is frame
+    if (hyoid == std::string::npos) return false;
+    face = chad.substr(0, hyoid);    // built in dna cpp 25 max
+    frame = chad.substr(hyoid + 4);  // suicie if you have low hyoid, its not your fault auto DNA_LENGTH = get_DNA_length(frame);
+    auto DNA_LENGTH = get_DNA_length(face);
+    return frame.size() >= DNA_LENGTH;
 }
 
 // this shi waits for injection, auto halt here to inject
