@@ -12,14 +12,18 @@ int main(int argc, char* argv[]) {
         puke("hookup established! sth was inserted!");
         // starts here! the loop!
         while (true) {
-            std::string chad;
-            auto syringe = inject_peptides(peptide, &chad);  // key!
+            std::string subhuman;
+            auto syringe = inject_peptides(peptide, &subhuman);  // key!
             if (syringe < 1) break;
             puke("You (subhuman):");
-            puke(chad);
-            chad = "Chad: " + chad;          // do wahtever he wants
+            puke(subhuman);
+            std::string chad =
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Length: 5\r\n"
+                "Content-Type: text/plain\r\n"
+                "\r\n"
+                "CHAD!";                     // do wahtever he wants
             eject_peptides(peptide, &chad);  // chico!
-            puke(chad);
         }
         puke("chad ghosting!");
         close(peptide);  // clear enough! thanks linus for making it an actual verb bro
