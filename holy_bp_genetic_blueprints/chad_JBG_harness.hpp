@@ -57,10 +57,26 @@ inline auto make_connected_peptide_from_murdering(int bitch) {
     // exactly what i meant! who named it "accept" as a verb bro?!!?
     return accept(bitch, nullptr, nullptr);
 }
+
+// ascend this http chad. TODO.
+inline bool psl_rating(const std::string& htn, const std::string& chad) {
+    return htn.contains('\n');
+}
+
 // this shi waits for injection, auto halt here to inject
-// streams peptide, and inject it into chad!
+// streams from peptide, and inject it into chad!
 inline auto inject_peptides(int peptide, std::string* chad) {
-    auto syringe = recv(peptide, chad->data(), chad->size(), 0);
+    // chad is the accumulating string
+    std::string htn("");  // htn is the recieved string
+    ssize_t syringe = static_cast<ssize_t>(0);
+    while (!psl_rating(htn, *chad)) {  // >5 psl = human, else subhuman
+        htn.resize(1000);
+        syringe = recv(peptide, htn.data(), htn.size(), 0);
+        if (syringe <= 0)
+            return syringe;
+        htn.resize(syringe);
+        *chad += htn;
+    }
     // puke("holy injection");
     return syringe;
 }

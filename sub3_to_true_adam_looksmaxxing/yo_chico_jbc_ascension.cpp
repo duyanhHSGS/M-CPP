@@ -10,13 +10,11 @@ int main(int argc, char* argv[]) {
         // it waits for sth to connect to this foid!
         // use net cat! nc 127.0.0.1 6969 and it unfroze
         puke("hookup established! sth was inserted!");
-        std::string chad;
         // starts here! the loop!
         while (true) {
-            chad.resize(1000);
+            std::string chad;
             auto syringe = inject_peptides(peptide, &chad);  // key!
             if (syringe < 1) break;
-            chad.resize(syringe);
             puke("You (subhuman):");
             puke(chad);
             chad = "Chad: " + chad;          // do wahtever he wants
